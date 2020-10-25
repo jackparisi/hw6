@@ -52,7 +52,7 @@ $.ajax({
    // $("#temp").append(curTemp)
     displayInfo(curTemp, curHumidity, windSpeed, curCity);
     getUV(response.coord.lat, response.coord.lon);
-    $(".todayIcon").attr("src", "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
+    $(".todayIcon").attr("src", "https://openweathermap.org/img/w/" + response.weather[0].icon + ".png");
     $("#weatherDiv").show();
     if(searchHistory.indexOf(curCity) < 0){
     searchHistory.push(curCity);
@@ -92,7 +92,7 @@ $.ajax({
         $(".day" + (i+1)).find(".date").text(item.dt_txt);
         $(".day" + (i+1)).find(".temp span").text(item.main.temp);
         $(".day" + (i+1)).find(".humid span").text(item.main.humidity);
-        $(".day" + (i+1)).find(".icon").attr("src", "http://openweathermap.org/img/w/" + item.weather[0].icon + ".png");
+        $(".day" + (i+1)).find(".icon").attr("src", "https://openweathermap.org/img/w/" + item.weather[0].icon + ".png");
 
     })
     
