@@ -63,7 +63,7 @@ $.ajax({
 });
 
 function getUV(lat, lon){
-    var uvURL = "http://api.openweathermap.org/data/2.5/uvi?lat=" + lat +"&lon=" + lon + "&appid=7ff30ecc03dd12bf95d8112a754c82af";
+    var uvURL = "https://api.openweathermap.org/data/2.5/uvi?lat=" + lat +"&lon=" + lon + "&appid=7ff30ecc03dd12bf95d8112a754c82af";
     $.ajax({
         url: uvURL,
         method: "GET"
