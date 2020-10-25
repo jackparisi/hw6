@@ -2,6 +2,7 @@ $(document).ready(function(){
 var apiKey = "7ff30ecc03dd12bf95d8112a754c82af";
 var searchHistory = [];
 var history = $(".history");
+var curDate = moment().format("MMM Do YY");
 
 function getHistory(){
     var historyStore = JSON.parse(localStorage.getItem("history"));
@@ -19,13 +20,14 @@ function displayInfo(temp, humidity, windSpeed, city){
      $(".temp").append("Temperature: " + temp + " F");
      $(".humidity").append("Humidity: " + humidity + "%");
      $(".wind").append("Wind Speed: " + windSpeed + " MPH");
-     $(".cityDate").append(city);
+     $(".cityDate").append(city + " " + curDate);
      
  }
 
 function generateInfo(cityName){
 $(".temp, .humidity, .wind, .cityDate, .uvIndex").empty();   
-$(".dayOne, .dayTwo, .dayThree, .dayFour, .dayFive").empty()
+$(".dayOne, .dayTwo, .dayThree, .dayFour, .dayFive").empty();
+
 //var queryURL = "https://www.api.openweathermap.org/data/2.5/weather?q=orlando&appid=" + apiKey + "&units=imperial";
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=7ff30ecc03dd12bf95d8112a754c82af&units=imperial";
 var fiveDayurl = "https://api.openweathermap.org/data/2.5/forecast?q=" + cityName + "&appid=7ff30ecc03dd12bf95d8112a754c82af&units=imperial";
@@ -69,11 +71,11 @@ function getUV(lat, lon){
         console.log(uvRes)
         $(".uvIndex").append("UV Index: " + uvRes.value);
         if(uvRes.value < 3){
-            $(".uvIndex").addClass("bg-success")
+            $(".uvIndex").removeClass("bg-warning bg-danger").addClass("bg-success")
         }else if(uvRes.value > 3 && uvRes.value < 6){
-            $(".uvIndex").addClass("bg-warning")
+            $(".uvIndex").removeClass("bg-success bg-danger").addClass("bg-warning")
         }else if(uvRes.value > 6){
-            $(".uvIndex").addClass("bg-danger")
+            $(".uvIndex").removeClass("bg-success bg-warning").addClass("bg-danger")
         };
     })
 }
